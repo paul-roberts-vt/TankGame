@@ -1,0 +1,57 @@
+<html><body><canvas id="gamescreen"></canvas><script type="text/javascript" src="tsag.js"></script><script type="text/javascript">
+	
+function start()
+{
+	var allimages = [
+	'paper', 'papersquare', 'blocks', 'buytank1', 'buytank2', 'greenarrow1',
+	'whitecircle', 'greencircle', 'redcircle', 'tank2', 'tank3', 'tank', 'bullet', 'water1'
+	
+	];
+	
+	for (var i in allimages)
+		loadimage(allimages[i]);
+setboard([
+'aaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+'a    A       A             a',
+'a      X                N  a',
+'a    A      A   A          a',
+'a                         wa',
+'a                       wwwa',
+'a                     wwwwwa',
+'a                   wwwwwwwa',
+'a                    wwwwwwa',
+'a   hhhh                wwwa',
+'a hhhhhhhh                 a',
+'ahhhhhhhhhh                a',
+'ahhhhhhhhh                 a',
+'ahhhhhhh                   a',
+'ahhhhh                     a',
+'ahh       wwwwww           a',
+'a       wwwwwwww           a',
+'a        wwwwww            a',
+'a                          a',
+'a         M       B      B a',
+'a                     Y    a',
+'a   M            B       B a',
+'a                     B    a',
+'aaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+]);
+
+
+
+
+
+
+}
+
+function run()
+{
+	settileimage('a', 'blocks');
+	settileimage('h', 'blocks');
+	settileimage('w', 'water1');
+	setbackground('paper');
+}
+
+initialize(start, run);
+
+</script></body></html>

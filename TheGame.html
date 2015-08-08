@@ -1,0 +1,96 @@
+<html><body><canvas id="gamescreen"></canvas>
+
+<script type="text/javascript" src="tsag.js"></script>
+
+<script type="text/javascript" src="tankmenu.js"></script>
+<script type="text/javascript" src="movetanks.js"></script>
+<script type="text/javascript" src="tankmaps.js"></script>
+<script type="text/javascript" src="healthbar.js"></script>
+<script type="text/javascript" src="interface.js"></script>
+<script type="text/javascript" src="firetank.js"></script>
+<script type="text/javascript">
+
+var allimages = [
+	'paper', 'papersquare', 'blocks', 'buytank1', 'buytank2', 'greenarrow1', 'grass', 'dirt',
+	'whitecircle', 'greencircle', 'redcircle', 'tank2', 'tank3', 'tank', 'bullet', 'water1',
+	'boom1', 'boom2','boom3','boom4','boom5','boom6','boom7','boom8','boom9','boom10','boom11',
+	'boom12','boom13','boom14','boom15','boom16','boom17','boom18','boom19','boom20','boom21','boom22',
+	'boom23','boom24', 'base2', 'menubox', 'base3', 'base5', 'mine1', 'miner1', 'miner2', 'mine2', 'minus', 'plus',
+	'dirtedgeU', 'dirtedgeR', 'dirtedgeL', 'dirtedgeD', 'dirtedgeUR', 'dirtedgeDR', 'dirtedgeLD', 'dirtedgeUL'
+];
+
+for (var i in allimages)
+	loadimage(allimages[i]);
+
+
+var MODE_MENU = 0;
+var MODE_CREDITS = 1;
+var MODE_GAME = 2;
+var MODE_LEVELSELECT = 3;
+var zheight = 400;
+var badcount = 0;
+var goodcount = 0;
+var badbasecount = 0;
+var mode;
+var ispaused = false;
+var score=0;
+var boughtunit = false;
+var markh = 0;
+var buytank = new Object();
+var minus = new Object();
+var plus = new Object();
+var level = 1;
+
+var zoom = new Object();
+zoom.y = view.y + (zheight/2);
+
+var newbad = 0;
+var badtimer = 200;
+var newbadspeed = 1;
+var timerlength = 200;
+var bomb = new Object();
+function rungame()
+{
+	drawtanks();
+	
+	if (!ispaused)
+	{
+
+		movetanks();
+		movescreen();
+		
+		if ((badcount + badbasecount) == 0)
+		{	
+			initmap(level);
+			level++;
+			return
+		}
+		HUD();
+		BuyTroops();
+		if (ispressing(KEY_M))
+			score++	
+	}
+
+}
+function start()
+{
+
+	initmenu();
+
+}
+
+function run()
+{
+	if (mode == MODE_MENU)
+		runmenu();
+	else if (mode == MODE_CREDITS)
+		runcredits();
+	else if (mode == MODE_GAME)
+		rungame();
+	else if (mode == MODE_LEVELSELECT)
+		runlevelselect();
+}
+
+initialize(start, run);
+
+</script></body></html>
